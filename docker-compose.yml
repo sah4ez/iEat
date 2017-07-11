@@ -9,10 +9,10 @@ services:
       - ./mongo_data:/data/db
   bot:
     image: ieatbot
-    depends_on:
+    links:
       - db
     healthcheck:
-      test: "ps aux | grep bot.py | wc -l | tr 0 ' '"
+      test: ["CMD-SHELL", "ps aux | grep bot.py | wc -l | tr 1 ' '"]
       interval: 1m
       timeout: 10s
       retries: 3
