@@ -11,6 +11,11 @@ services:
     image: ieatbot
     depends_on:
       - db
+    healthcheck:
+      test: "ps aux | grep bot.py | wc -l | tr 0 ' '"
+      interval: 1m
+      timeout: 10s
+      retries: 3
     volumes:
       - ./token:/home/bot/token
     command:
