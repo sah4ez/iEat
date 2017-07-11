@@ -9,9 +9,9 @@ services:
       - ./mongo_data:/data/db
   bot:
     image: ieatbot
-    environment:
-      - "TOKEN=426495381:AAHeULbPJozIrpJ099DGb-sCQ5dQ3ZXguVM"
     depends_on:
       - db
+    volumes:
+      - ./token:/home/bot/token
     command:
-      "python3 /home/bot/bot.py $TOKEN"
+      "/bin/bash /home/bot/entrypoint.sh"
