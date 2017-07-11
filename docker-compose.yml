@@ -1,0 +1,17 @@
+version: '3.1'
+
+services:
+  db:
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./mongo_data:/var/lib/mongodb
+  bot:
+    image: ieatbot
+    environment:
+      - "TOKEN=426495381:AAHeULbPJozIrpJ099DGb-sCQ5dQ3ZXguVM"
+    depends_on:
+      - db
+    command:
+      "python3 /home/bot/bot.py $TOKEN"
